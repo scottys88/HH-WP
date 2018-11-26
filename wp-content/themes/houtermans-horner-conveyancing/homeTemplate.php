@@ -125,9 +125,9 @@
       </div>
       <div class="row">
         <div class="col-md-4 offset-md-4">
-                <?php if( have_rows('team_members_button') ): 
+                <?php if( have_rows('team_members_button') ): ?>
 
-                    while( have_rows('team_members_button') ): the_row(); 
+                    <?php while( have_rows('team_members_button') ): the_row(); 
                         
                         // vars
                         $buttonLink = get_sub_field('team_members_button_link');
@@ -150,105 +150,112 @@
       <!-- /.row -->
 
       <!-- Services Section -->
-    <div class="container-fluid black-section services-section">
+<div class="container-fluid black-section services-section">
       <h2>Portfolio Heading</h2>
 
       <!-- start repeater loop -->
 <?php if( have_rows('services_section') ): ?>
 
-<?php while( have_rows('services_section') ): the_row(); ?>
+   
+    <?php while( have_rows('services_section') ): the_row(); ?>
 
                 
-    <?php if( have_rows('service_text_left_image_right') ): ?>
+        <?php if( have_rows('service_text_left_image_right_text') ): ?>
 
-        <div class="row text-left-image-right">
-            <div class="col-lg-4 offset-lg-2 col-sm-6 text-left">
+            <div class="row text-left-image-right">
+                <div class="col-lg-4 offset-lg-2 col-sm-6 text-left">
             
-        <?php while( have_rows('service_text_left_image_right') ): the_row(); 
+                    <?php while( have_rows('service_text_left_image_right_text') ): the_row(); 
 
-            // vars
-            $textLeftHeading = get_sub_field('text_left_heading');
-            $textLeftContent = get_sub_field('text_left_content');
-            $imageRight = get_sub_field('image_right');
-        
-            ?>
+                        // vars
+                        $textLeftHeading = get_sub_field('text_left_heading');
+                        $textLeftContent = get_sub_field('text_left_content');
+                        $imageRight = get_sub_field('image_right');
+                    
+                    ?>
 
             
                
-                <div class="text-left-content">
+                        <div class="text-left-content">
 
-                <?php if( $textLeftHeading ): ?>
-                    <h4 class="text-left-content--heading"><?php echo $textLeftHeading; ?></h4>
-                <?php endif; ?>
-                <?php if( $textLeftContent ): ?>
-                    <p class="text-left-content--content"><?php echo $textLeftContent; ?></p>
-                <?php endif; ?>
+                            <?php if( $textLeftHeading ): ?>
+                                <h4 class="text-left-content--heading"><?php echo $textLeftHeading; ?></h4>
+                            <?php endif; ?>
 
-                    <?php if( have_rows('text_left_button') ):
+                            <?php if( $textLeftContent ): ?>
+                                <p class="text-left-content--content"><?php echo $textLeftContent; ?></p>
+                            <?php endif; ?>
+
                         
-                        while( have_rows('text_left_button') ): the_row();
+                        <?php if( have_rows('text_left_button') ): ?>
+                        
+                            <?php while( have_rows('text_left_button') ): the_row();
                         
                         	// vars
                             $buttonText = get_sub_field('text_left_button_text');
                             $link = get_sub_field('text_left_button_url');
-                        ?>
-                            <div>
-                                <a href="<?php echo $link; ?>"><div class="btn btn-secondary btn-lg"><?php echo $buttonText; ?></div></a>
-                            </div>
-                            
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                            ?>
+                                <div>
+                                    <a href="<?php echo $link; ?>"><div class="btn btn-secondary btn-lg"><?php echo $buttonText; ?></div></a>
+                                </div>
+                            <?php endwhile; ?>
 
-
-
-                </div>
+                        <?php endif; ?>
+                </div>              
             </div>
-                            <?php if( $imageRight ): ?>
+                <?php if( $imageRight ): ?>
                             
-                            <div class="col-lg-5 col-sm-6 image-right">
-                            <div class="image-right-wrapper">
-                        <img src="<?php echo $imageRight; ?>" class="image-right--image img-fluid rounded">
-                            <?php endif; ?>
+                    <div class="col-lg-5 col-sm-6 image-right">
+                        <div class="image-right-wrapper">
+                            <img src="<?php echo $imageRight; ?>" class="image-right--image img-fluid rounded">
                         </div>
                     </div>
+                
+                <?php endif; ?>
+
 
             <?php endwhile; ?>
         <?php endif; ?>
+    <?php endwhile; ?>
+<?php endif; ?>
+</div>
 
+
+<?php if( have_rows('services_section') ): ?>
+
+    <?php while( have_rows('services_section') ): the_row(); ?>
 
                 
-    <?php if( have_rows('service_left_image_right_text') ): ?>
+        <?php if( have_rows('service_left_image_right_text') ): ?>
 
 
-      <div class="row text-right-image-left">
-            <div class="col-lg-5 offset-lg-1 col-sm-6 image-left">
+            <div class="row text-right-image-left">
+                <div class="col-lg-5 offset-lg-1 col-sm-6 image-left">
 
-            <?php while( have_rows('service_left_image_right_text') ): the_row(); 
+                    <?php while( have_rows('service_left_image_right_text') ): the_row(); 
 
 
-                            // vars
-                $textRightHeading = get_sub_field('text_right_heading');
-                $textRightContent = get_sub_field('text_right_content');
-                $imageLeft = get_sub_field('image_left');
-            
-                ?>
+                        // vars
+                        $textRightHeading = get_sub_field('text_right_heading');
+                        $textRightContent = get_sub_field('text_right_content');
+                        $imageLeft = get_sub_field('image_left');
+                    
+                        ?>
 
                         <?php if( $imageLeft ): ?>
                             <div class="image-left-wrapper">
                                 <img src="<?php echo $imageLeft; ?>" class="image-left--image img-fluid rounded">
                             </div>
-                        </div>
-  
                         <?php endif; ?>
+                
+                </div>
 
-
-
- 
-                    <?php if( $textRightHeading ): ?>
+                <?php if( $textRightHeading ): ?>
                     <div class="col-lg-4  col-sm-6 text-right">
                         <div class="text-right-content">
                             <h4 class="text-right-content--heading"><?php echo $textRightHeading; ?></h4>
-                    <?php endif; ?>
+                <?php endif; ?>
+
                     <?php if( $textRightContent ): ?>
                         <p class="text-right-content--content"><?php echo $textRightContent; ?></p>
                     <?php endif; ?>
@@ -259,26 +266,26 @@
                         while( have_rows('text_right_button') ): the_row();
                         
                         	// vars
-                                $buttonText = get_sub_field('text_right_button_text');
-                                $link = get_sub_field('text_right_button_url');
-                            ?>
+                            $buttonText = get_sub_field('text_right_button_text');
+                            $link = get_sub_field('text_right_button_url');
+                            
+                        ?>
                             <div>
                                 <a href="<?php echo $link; ?>"><div class="btn btn-secondary btn-lg"><?php echo $buttonText; ?></div></a>
                             </div>
                             
                         <?php endwhile; ?>
                     <?php endif; ?>
+                        
+                        </div>
                     </div>
                     
-                    
-
-
-
-                    <?php endwhile; ?>
+                  <?php endwhile; ?>
             <?php endif; ?>
         <?php endwhile; ?>
     <?php endif; ?>
 </div>
+
 
 
 
