@@ -8687,7 +8687,7 @@ hr {
         width: 800px;
         height: 400px;
         position: absolute;
-        background-image: url("/images/grey-svg-hh-logo.svg");
+        background-image: url("http://localhost:8080/HH-WP/wp-content/uploads/2018/11/grey-svg-hh-logo.svg");
         background-repeat: no-repeat;
         background-size: contain;
         right: -350px;
@@ -8794,7 +8794,7 @@ hr {
           width: 800px;
           height: 400px;
           position: absolute;
-          background-image: url("/images/grey-svg-hh-logo.svg");
+          background-image: url("http://localhost:8080/HH-WP/wp-content/uploads/2018/11/grey-svg-hh-logo.svg");
           background-repeat: no-repeat;
           background-size: contain;
           right: -900px;

@@ -1,36 +1,46 @@
 <?php /* Template Name: Home Page Template */ ?>
 <?php get_header(); ?>
+
+<?php if( have_rows('slider') ): ?>
+    <?php $slideNumber = 0; ?>
     <header>
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+    <?php while( have_rows('slider') ): the_row(); 
+
+        // vars
+		$image = get_sub_field('slider_image');
+		$heading = get_sub_field('slider_heading');
+        $link = get_sub_field('slider_link');
+        $supportingText = get_sub_field('slider_supporting_text');
+        ++$slideNumber;
+
+		?>
+
+
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('https://source.unsplash.com/1900x1080/?house')">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Houtermans Horner Conveyancing</h3>
-              <p>Expert knowledge, friendly, local.</p>
+
+          <?php if( $image ): ?>
+         <div class="carousel-item <?php if($slideNumber == 1) echo 'active'; ?> " style="background-image: url(' <?php echo $image; ?>')">
+         <?php endif; ?>
+         <?php if( $link ): ?>
+            <a href="<?php echo $link; ?>"><div class="carousel-caption d-none d-md-block">
+        <?php endif; ?>
+        <?php if( $heading ): ?>
+                <h3><?php echo $heading; ?></h3>
+        <?php endif; ?>
+        <?php if( $supportingText ): ?>
+                <p><?php echo $supportingText; ?></p>
+            <?php endif; ?>
+              </a>
             </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/1900x1080')">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
             </div>
-          </div>
-          <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('https://source.unsplash.com/1900x1080/?city')">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
-            </div>
-          </div>
+            
+
+      <?php endwhile; ?>
+      
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
@@ -40,6 +50,7 @@
         </a>
       </div>
     </header>
+    <?php endif; ?>
 
     <!-- Page Content -->
     <div class="container-fluid intro-section black-section">
@@ -162,8 +173,7 @@
                 
         <?php if( have_rows('service_text_left_image_right_text') ): ?>
 
-            <div class="row text-left-image-right">
-                <div class="col-lg-4 offset-lg-2 col-sm-6 text-left">
+            
             
                     <?php while( have_rows('service_text_left_image_right_text') ): the_row(); 
 
@@ -174,7 +184,8 @@
                     
                     ?>
 
-            
+                    <div class="row text-left-image-right">
+                        <div class="col-lg-4 offset-lg-2 col-sm-6 text-left">
                
                         <div class="text-left-content">
 
@@ -213,12 +224,12 @@
                 
                 <?php endif; ?>
 
+                    </div>
 
             <?php endwhile; ?>
         <?php endif; ?>
     <?php endwhile; ?>
 <?php endif; ?>
-</div>
 
 
 <?php if( have_rows('services_section') ): ?>
@@ -229,8 +240,7 @@
         <?php if( have_rows('service_left_image_right_text') ): ?>
 
 
-            <div class="row text-right-image-left">
-                <div class="col-lg-5 offset-lg-1 col-sm-6 image-left">
+   
 
                     <?php while( have_rows('service_left_image_right_text') ): the_row(); 
 
@@ -241,6 +251,8 @@
                         $imageLeft = get_sub_field('image_left');
                     
                         ?>
+                    <div class="row text-right-image-left">
+                        <div class="col-lg-5 offset-lg-1 col-sm-6 image-left">
 
                         <?php if( $imageLeft ): ?>
                             <div class="image-left-wrapper">
@@ -279,6 +291,7 @@
                         
                         </div>
                     </div>
+                    </div>
                     
                   <?php endwhile; ?>
             <?php endif; ?>
@@ -296,39 +309,70 @@
 
       <!-- Footer -->
       <div class="container-fluid black-section footer-section">
-        <h4>Get in contact with Jake and the team.</h4>
+
+        <?php if( have_rows('contact_details') ): 
+
+        while( have_rows('contact_details') ): the_row(); 
+            
+            // vars
+            $contactSentence = get_sub_field('contact_sentence');
+            $contactPhone = get_sub_field('contact_phone');
+            $contactPhone = get_sub_field('contact_email');
+
+            
+            ?>
+
+
+        <h4> <?php the_sub_field('contact_sentence'); ?></h4>
         <div class="row">
           <div class="col-md-4 offset-md-4">
           <div class="contact-wrapper">
             <!-- phone -->
             <div class="contact-method">
               <div class="contact-method--icon">
-                  <a href="tel:(08) 8261 5399"><i class="fas fa-phone"></i></a>
+                  <a href="tel:<?php the_sub_field('contact_phone'); ?>"><i class="fas fa-phone"></i></a>
               </div>
               <div class="contact-method--details">
-                <a href="tel:(08) 8261 5399">08 8261 5399</a>
+                <a href="tel:<?php the_sub_field('contact_phone'); ?>"><?php the_sub_field('contact_phone'); ?></a>
               </div>
             </div>
             <!-- email -->
             <div class="contact-method">
                 <div class="contact-method--icon">
-                  <a href="tel:(08) 8261 5399"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:<?php the_sub_field('contact_email'); ?>"><i class="fas fa-envelope"></i></a>
                 </div>
                 <div class="contact-method--details">
-                  <a href="tel:(08) 8261 5399">08 8261 5399</a>
+                  <a href="mailto:<?php the_sub_field('contact_email'); ?>"><?php the_sub_field('contact_email'); ?></a>
                 </div>
               </div>
               <!-- address -->
+              <?php if( have_rows('contact_address') ): 
+
+                while( have_rows('contact_address') ): the_row(); 
+                    
+                    // vars
+                    $addressText = get_sub_field('address_text');
+                    $addressLink = get_sub_field('address_link');
+                    
+                    ?>
+
               <div class="contact-method">
                 <div class="contact-method--icon">
-                  <a href="tel:(08) 8261 5399"><i class="fas fa-map-marker-alt"></i></a>
+                  <a href="<?php the_sub_field('address_link'); ?>"><i class="fas fa-map-marker-alt"></i></a>
                 </div>
                 <div class="contact-method--details">
-                  <a href="tel:(08) 8261 5399">318 North East Road<br>Klemzig<br>SA 5087</a>
+                  <a href="<?php the_sub_field('address_link'); ?>"><?php the_sub_field('address_text'); ?></a>
                 </div>
               </div>
+
           </div>
         </div>
+        <?php endwhile; ?>
+                
+                <?php endif; ?>
+        <?php endwhile; ?>
+	
+    <?php endif; ?>
       </div>
       <!-- Map -->
       <div class="row">
