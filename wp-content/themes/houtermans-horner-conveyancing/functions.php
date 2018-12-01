@@ -59,6 +59,18 @@ if ( ! function_exists( 'houtermans_horner_conveyancing_setup' ) ) :
 			'caption',
 		) );
 
+		function add_specific_menu_location_atts( $atts, $item, $args ) {
+			// check if the item is in the primary menu
+			if( $args->theme_location == 'menu-1' ) {
+			  // add the desired attributes:
+			  $atts['class'] = 'nav-link';
+			}
+			return $atts;
+		}
+		add_filter( 'nav_menu_link_attributes', 'add_specific_menu_location_atts', 10, 3 );
+
+
+
 		// Set up the WordPress core custom background feature.
 		add_theme_support( 'custom-background', apply_filters( 'houtermans_horner_conveyancing_custom_background_args', array(
 			'default-color' => 'ffffff',

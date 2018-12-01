@@ -44,15 +44,20 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+
 		  <?php
 			wp_nav_menu( array(
 				'theme_location' => 'menu-1',
 				'menu_id'        => 'primary-menu',
+				'menu'			 =>	'hh-menu',
+				'menu_class'	=> 'navbar-nav ml-auto',
+				'container'       => 'div', 
+				'container_class' => 'collapse navbar-collapse', 
+				'container_id'    => 'navbarResponsive',
+				'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>'
+				
 			) );
 			?>
-          </ul>
-        </div>
+
       </div>
     </nav>
