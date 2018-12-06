@@ -101,6 +101,7 @@ while( have_rows('header') ): the_row();
         
             // check if the nested repeater field has rows of data
             if( have_rows('full_width_case_study') ):
+                echo '<div class="case-study-section black-section">';
 
                 while ( have_rows('full_width_case_study') ) : the_row();
                 $fullWidthImage = get_sub_field('full_width_image');
@@ -122,49 +123,69 @@ while( have_rows('header') ): the_row();
             endwhile;
         endif;
 
+        
+        if( have_rows('three_column_case_study') ):
+            
+            while ( have_rows('three_column_case_study') ): the_row();
+                echo '<div class="row">';
+                if( have_rows('column_1_case_study') ):
+
+                    while( have_rows('column_1_case_study') ): the_row(); 
+
+                        $image = get_sub_field('column_1_case_study_image');
+                        $link = get_sub_field('column_1_case_study_link');
+                        $text = get_sub_field('column_1_case_study_copy'); 
+
+                    echo '<div class="col-md-6 px-0">';
+                    echo    '<a href="' . $link . '">';
+                    echo        '<div class="case-study-half-width case-study">';
+                    echo           '<img class="case-study-half-width--image" src="' . $image . '">';
+                    echo                '<div class="case-study-half-width-content-wrapper case-study-content">';
+                    echo                    '<p class="case-study-half-width--content">';
+                                                the_sub_field('column_1_case_study_copy');
+                    echo                    '</p>';
+                    echo                '</div>';
+                    echo             '</div>';
+                    echo           '</a>';
+                    echo        '</div>';
+                endwhile; 
+            endif;
+            if( have_rows('column_2_case_study') ):
+
+                while( have_rows('column_2_case_study') ): the_row(); 
+
+                    $image = get_sub_field('column_2_case_study_image');
+                    $link = get_sub_field('column_2_case_study_link');
+                    $text = get_sub_field('column_2_case_study_copy'); 
+
+                echo '<div class="col-md-6 px-0">';
+                echo    '<a href="' . $link . '">';
+                echo        '<div class="case-study-half-width case-study">';
+                echo           '<img class="case-study-half-width--image" src="' . $image . '">';
+                echo                '<div class="case-study-half-width-content-wrapper case-study-content">';
+                echo                    '<p class="case-study-half-width--content">';
+                                            the_sub_field('column_2_case_study_copy');
+                echo                    '</p>';
+                echo                '</div>';
+                echo             '</div>';
+                echo           '</a>';
+                echo        '</div>';
+            endwhile; 
+        endif;
+        endwhile;
+        echo        '</div>';
     endif;
-
-
-    endwhile;
-   
-
+endif;
+endwhile;
 endif;
 
 ?>
-        </div>
     </div>
-    <!-- Full width case studies images -->
-    <div class="case-study-section black-section">
+</div>
 
-        <div class="row">
-            <div class="col-md-6 px-0">
-                <a href="#">
-                    <div class="case-study-half-width case-study">
-                        <img class="case-study-half-width--image" src="/images/house-night.jpg">
-                        <div class="case-study-half-width-content-wrapper case-study-content">
-                            <p class="case-study-half-width--content">
-                                Commercial Property Lease, Westfield 2018
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 px-0">
-                <a href="#">
-                    <div class="case-study-half-width case-study">
-                        <img class="case-study-half-width--image" src="/images/house-night.jpg">
-                        <div class="case-study-half-width-content-wrapper case-study-content">
-                            <p class="case-study-half-width--content">
-                                Commercial Property Lease, Westfield 2018
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-      <!-- /.row -->
-    </div>
+    
+
+        
 
     <!-- Full profile section  -->
 
