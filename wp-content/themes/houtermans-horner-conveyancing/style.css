@@ -8670,10 +8670,12 @@ hr {
   max-width: 85px; }
 
 .white-section {
-  background-color: white; }
+  background-color: white;
+  overflow: hidden; }
 
 .black-section {
-  background-color: black; }
+  background-color: black; 
+  overflow: hidden; }
 
 .intro-section {
   color: white;

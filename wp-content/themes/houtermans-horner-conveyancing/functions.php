@@ -134,7 +134,7 @@ add_action( 'widgets_init', 'houtermans_horner_conveyancing_widgets_init' );
 function houtermans_horner_conveyancing_scripts() {
 	wp_enqueue_style( 'houtermans-horner-conveyancing-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'houtermans-horner-conveyancing-bootstrap-style', get_stylesheet_uri() . '/vendor/bootstrap/css/bootstrap.min.css', array(), '20151215', true );
+	
 
 	wp_enqueue_script( 'houtermans-horner-conveyancing-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
